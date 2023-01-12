@@ -11,11 +11,11 @@
 <body>
     <form onsubmit="saveToLocalStorage(event)">
         <label>Name:</label>
-        <input type="text" name="username">
+        <input type="text" name="username" id ='nm'>
         <label>Name:</label>
-        <input type="email" name="Email">
+        <input type="email" name="Email" id='mail'>
         <label>Phone no:</label>
-        <input type="tel" name="phoneno">
+        <input type="tel" name="phoneno" id ='mo'>
         <button> Submit </button>
     </form>
     <ul id="Details">
@@ -47,7 +47,7 @@
             const child = document.createElement('li');
             child.textContent = obj.name + '-' + obj.email + '-' + obj.Phone;
 
-
+            // delete
             const delbtn = document.createElement('input')
             delbtn.type = "button"
             delbtn.value = 'del'
@@ -56,6 +56,19 @@
                 Parent.removeChild(child)
             }
 
+            // edit
+
+            const editbtn = document.createElement('input')
+            editbtn.type = "button"
+            editbtn.value = 'edit'
+            editbtn.onclick = () => {
+                localStorage.removeItem(obj.email)
+                Parent.removeChild(child)
+                document.getElementById('nm').value =obj.name
+                document.getElementById('mail').value = obj.email
+                document.getElementById('mo').value = obj.Phone
+            }
+            child.appendChild(editbtn)
             child.appendChild(delbtn)
             Parent.appendChild(child)
         }
